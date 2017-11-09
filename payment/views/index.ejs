@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src='/js/d3pie.js'></script>
+    <link rel='stylesheet' href='/css/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div id="views"></div>
+    <div id="revenue"></div>
+    <script>
+        var views = new d3pie("views", {
+            header: {
+                title: {
+                    text: "Views"
+                },
+                location: "pie-center"
+            },
+            size: {
+                pieInnerRadius: "60%",
+                canvasHeight: 400,
+                canvasWidth: 400
+            },
+            labels: {
+                mainLabel: {
+                    fontSize: 10
+                },
+            },
+            data: {
+                sortOrder: "label-asc",
+                content: [
+                    { label: "Collaborator 1", value: 450 },
+                    { label: "Collaborator 2", value: 7500 },
+                    { label: "Collaborator 3", value: 349 },
+                    { label: "Collaborator 4", value: 25 },
+                ]
+            }
+        });
+        var revenue = new d3pie("revenue", {
+            header: {
+                title: {
+                    text: "Revenue"
+                },
+                location: "pie-center"
+            },
+            size: {
+                pieInnerRadius: "60%",
+                canvasHeight: 400,
+                canvasWidth: 400
+            },
+            labels: {
+                outer: {
+        			pieDistance: 16
+        		},
+                mainLabel: {
+                    fontSize: 10
+                },
+
+            },
+            data: {
+                sortOrder: "label-asc",
+                content: [
+                    { label: "Collaborator 1", value: 100.00, "color": "#666666" },
+                    { label: "Collaborator 2", value: 700.00, "color": "#666666" },
+                    { label: "Collaborator 3", value: 34.00, "color": "#666666" },
+                    { label: "Collaborator 4", value: 800.66, "color": "#666666" },
+                ]
+            },
+            tooltips: {
+        		enabled: true,
+        		type: "placeholder",
+        		string: "{label}: ${value}, {percentage}%"
+        	},
+        });
+    </script>
+  </body>
+</html>

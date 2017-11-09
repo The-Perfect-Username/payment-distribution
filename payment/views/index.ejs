@@ -5,12 +5,15 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src='/js/d3pie.js'></script>
     <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/css/app.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <div id="views"></div>
-    <div id="revenue"></div>
+    <h2>Video Collaboration</h2>
+    <div id="chartContainer">
+        <div id="views" class="chart"></div>
+        <div id="revenue" class="chart"></div>
+    </div>
+
     <script>
         var views = new d3pie("views", {
             header: {
@@ -76,5 +79,62 @@
         	},
         });
     </script>
+    <div id="tableContainer">
+        <table>
+            <thead>
+                <th>
+                    USERNAME
+                </th>
+                <th>
+                    VIEWS
+                </th>
+                <th>
+                    REVENUE
+                </th>
+                <th>
+                    SHARE TIME
+                </th>
+                <th>
+                    START DATE
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Channel One
+                    </td>
+                    <td>
+                        765
+                    </td>
+                    <td>
+                        $0.25
+                    </td>
+                    <td>
+                        1 day, 12 hours, 12 minutes
+                    </td>
+                    <td>
+                        10/11/2017
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Channel Two
+                    </td>
+                    <td>
+                        425
+                    </td>
+                    <td>
+                        $0.20
+                    </td>
+                    <td>
+                        1 day, 07 hours, 52 minutes
+                    </td>
+                    <td>
+                        10/11/2017
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
   </body>
 </html>

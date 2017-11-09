@@ -4,8 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var sassMiddleware   = require('node-sass-middleware');
-var session          = require('express-session');
+var sassMiddleware = require('node-sass-middleware');
+var session = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -24,20 +24,22 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use("/public/css", express.static(__dirname + '/public/css'));
-app.use("/public/js", express.static(__dirname + '/public/js'));
-app.use("/public/images", express.static(__dirname + '/public/images'));
+
 
 app.use(
    sassMiddleware({
        src: __dirname + '/sass',
        dest: __dirname + '/public/css',
-       prefix: '/public/css',
+       prefix: '/css',
        outputStyle: 'compressed',
        debug: true,
    })
 );
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use("/public/css", express.static(__dirname + '/public/css'));
+app.use("/public/js", express.static(__dirname + '/public/js'));
+app.use("/public/images", express.static(__dirname + '/public/images'));
 
 app.use('/', index);
 app.use('/users', users);

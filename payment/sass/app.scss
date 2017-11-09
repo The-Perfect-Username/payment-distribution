@@ -1,0 +1,54 @@
+.chart {
+    display: inline-block;
+}
+
+#chartContainer {
+    margin: auto;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 50px;
+}
+
+* {
+    font-family: Helvetica;
+}
+
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+
+    thead {
+        border: 1px solid #ccc;
+
+        tr:hover {
+            background: #fff;
+        }
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 15px 50px 15px 20px;
+        margin: 0;
+    }
+
+    th {
+        font-size: 0.8em;
+    }
+
+    td {
+        font-size: 0.85em;
+    }
+
+    tr {
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+
+        &:hover {
+            background: #f2f2f2;
+        }
+    }
+}

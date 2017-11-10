@@ -1,2 +1,2 @@
 # payment-distribution
-A NodeJS application that allows collaborating channels/streamers to share in revenue made from their online content
+A NodeJS application that allows collaborating creators to evenly distribute the revenue made collectively from their content.

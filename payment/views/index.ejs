@@ -2,139 +2,61 @@
 <html>
   <head>
     <title><%= title %></title>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src='/js/d3pie.js'></script>
+    <script src='/js/ejs.min.js'></script>
     <link rel='stylesheet' href='/css/style.css' />
     <link rel='stylesheet' href='/css/app.css' />
+
   </head>
   <body>
-    <h2>Video Collaboration</h2>
-    <div id="chartContainer">
-        <div id="views" class="chart"></div>
-        <div id="revenue" class="chart"></div>
-    </div>
-
-    <script>
-        var views = new d3pie("views", {
-            header: {
-                title: {
-                    text: "Views"
-                },
-                location: "pie-center"
-            },
-            size: {
-                pieInnerRadius: "60%",
-                canvasHeight: 400,
-                canvasWidth: 400
-            },
-            labels: {
-                mainLabel: {
-                    fontSize: 10
-                },
-            },
-            data: {
-                sortOrder: "label-asc",
-                content: [
-                    { label: "Collaborator 1", value: 450 },
-                    { label: "Collaborator 2", value: 7500 },
-                    { label: "Collaborator 3", value: 349 },
-                    { label: "Collaborator 4", value: 25 },
-                ]
-            }
-        });
-        var revenue = new d3pie("revenue", {
-            header: {
-                title: {
-                    text: "Revenue"
-                },
-                location: "pie-center"
-            },
-            size: {
-                pieInnerRadius: "60%",
-                canvasHeight: 400,
-                canvasWidth: 400
-            },
-            labels: {
-                outer: {
-        			pieDistance: 16
-        		},
-                mainLabel: {
-                    fontSize: 10
-                },
-
-            },
-            data: {
-                sortOrder: "label-asc",
-                content: [
-                    { label: "Collaborator 1", value: 100.00, "color": "#666666" },
-                    { label: "Collaborator 2", value: 700.00, "color": "#666666" },
-                    { label: "Collaborator 3", value: 34.00, "color": "#666666" },
-                    { label: "Collaborator 4", value: 800.66, "color": "#666666" },
-                ]
-            },
-            tooltips: {
-        		enabled: true,
-        		type: "placeholder",
-        		string: "{label}: ${value}, {percentage}%"
-        	},
-        });
-    </script>
-    <div id="tableContainer">
-        <table>
-            <thead>
-                <th>
-                    USERNAME
-                </th>
-                <th>
-                    VIEWS
-                </th>
-                <th>
-                    REVENUE
-                </th>
-                <th>
-                    SHARE TIME
-                </th>
-                <th>
-                    START DATE
-                </th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        Channel One
-                    </td>
-                    <td>
-                        765
-                    </td>
-                    <td>
-                        $0.25
-                    </td>
-                    <td>
-                        1 day, 12 hours, 12 minutes
-                    </td>
-                    <td>
-                        10/11/2017
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Channel Two
-                    </td>
-                    <td>
-                        425
-                    </td>
-                    <td>
-                        $0.20
-                    </td>
-                    <td>
-                        1 day, 07 hours, 52 minutes
-                    </td>
-                    <td>
-                        10/11/2017
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+      <section class="container">
+          <h2>Video Collaboration</h2>
+          <div id="chartContainer">
+              <div id="views" class="chart"></div>
+              <div id="revenue" class="chart"></div>
+          </div>
+          <script src='/public/js/collaboration.js'></script>
+          <div id="totalAmounts">
+              <div class="total">
+                  <h2>$<%= totals.revenue.toFixed(2) %></h2>
+                  <h4>Total Revenue</h4>
+              </div>
+              <div class="total">
+                  <h2><%= totals.views %></h2>
+                  <h4>Total Views</h4>
+              </div>
+              <div class="total">
+                  <h2><%= totals.collaborators %></h2>
+                  <h4>Collaborators</h4>
+              </div>
+          </div>
+          <div id="tableContainer">
+              <table>
+                  <thead>
+                      <th>
+                          USERNAME
+                      </th>
+                      <th>
+                          VIEWS
+                      </th>
+                      <th>
+                          REVENUE
+                      </th>
+                      <th>
+                          SHARE TIME
+                      </th>
+                      <th>
+                          START DATE
+                      </th>
+                  </thead>
+                  <tbody></tbody>
+              </table>
+          </div>
+      </section>
   </body>
 </html>

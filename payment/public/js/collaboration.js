@@ -9,10 +9,10 @@ $(function() {
         },
         success: function(data) {
             var viewsLabels = [], revenueLabels = [];
-            var table = $('#tableContainer tbody');
+            var summary = $('#summaryTable tbody');
             for (var i = 0; i < data.collaborators.length; i++) {
 
-                table.append([
+                summary.append([
                     "<tr><td>" + data.collaborators[i].channel + "</td>",
                     "<td>" + data.collaborators[i].views + "</td>",
                     "<td>" + data.collaborators[i].revenue + "</td>",
@@ -32,8 +32,56 @@ $(function() {
         }
     })
 
+    $.ajax({
+        url: "/reports",
+        type: 'get',
+        dataType: 'json',
+        beforeSend: function() {
+            console.log("About to send");
+        },
+        success: function(data) {
+            var report = $('#reportTable tbody');
+            var pagination = $('.pagination');
+            var hidden = '', count = 1;
 
+            for (var i = 1; i <= Math.ceil(data.length / 2); i++) {
+                pagination.append('<li><a href="#">'+i+'</a></li>');
+            }
 
+            for (var i = 0; i < data.length; i++) {
+
+                if (i >= 2) {
+                     hidden = "class='hidden'";
+                }
+
+                report.append([
+                    "<tr "+hidden+" rel="+count+"><td>" + data[i].channel + "</td>",
+                    "<td>" + data[i].views + "</td>",
+                    "<td>" + data[i].revenue.toFixed(2) + "</td>",
+                    "<td>" + data[i].creation + "</td></tr>",
+                ].join(''));
+
+                if (i % 2 !== 0) {
+                    count++;
+                }
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    })
+
+    $(document).on('click', '.pagination a',function(e) {
+        e.preventDefault();
+        var btn = $(this);
+        var parent = btn.parents('.pagination');
+        var target = parent.attr('target');
+        var targetedTr = $(target).find('tbody tr[rel='+btn.text()+']');
+        var tr = $(target).find('tbody tr');
+        tr.addClass('hidden');
+        targetedTr.removeClass('hidden');
+
+    })
 
     String.prototype.capitalize = function() {
         return this.charAt(0).toUpperCase() + this.slice(1);

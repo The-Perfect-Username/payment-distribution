@@ -1,67 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src='/js/d3pie.js'></script>
-    <script src='/js/ejs.min.js'></script>
-    <link rel='stylesheet' href='/css/style.css' />
-    <link rel='stylesheet' href='/css/app.css' />
+    <head>
+        <title><%= title %></title>
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src='/js/d3pie.js'></script>
+        <script src='/js/ejs.min.js'></script>
+        <link rel='stylesheet' href='/css/style.css' />
+        <link rel='stylesheet' href='/css/app.css' />
 
-  </head>
-  <body>
-      <section class="container">
-          <div id="chartContainer">
-              <div id="views" class="chart"></div>
-              <div id="revenue" class="chart"></div>
-          </div>
-          <script src='/public/js/collaboration.js'></script>
-          <div id="totalAmounts">
-              <div class="total">
-                  <h2>$<%= totals.revenue.toFixed(2) %></h2>
-                  <h4>Total Revenue</h4>
-              </div>
-              <div class="total">
-                  <h2><%= totals.views %></h2>
-                  <h4>Total Views</h4>
-              </div>
-              <div class="total">
-                  <h2><%= totals.collaborators %></h2>
-                  <h4>Collaborators</h4>
-              </div>
-          </div>
-          <div id="tableContainer">
-              <table>
-                  <thead>
-                      <th>
-                          USERNAME
-                      </th>
-                      <th>
-                          VIEWS
-                      </th>
-                      <th>
-                          REVENUE
-                      </th>
-                      <th>
-                          SHARE TIME
-                      </th>
-                      <th>
-                          START DATE
-                      </th>
-                  </thead>
-                  <tbody></tbody>
-              </table>
-          </div>
-          <div id="payment">
-              <h2>Payment</h2>
-              <p>
-                  All revenue made is evenly divided between all collaborators. Payment will be made to your chosen pay-out account.
-              </p>
-          </div>
-      </section>
-  </body>
+    </head>
+    <body>
+        <section class="container">
+            <div id="chartContainer">
+                <div id="views" class="chart"></div>
+                <div id="revenue" class="chart"></div>
+            </div>
+            <script src='/public/js/collaboration.js'></script>
+            <div id="totalAmounts">
+                <div class="total">
+                    <h2>$<%= totals.revenue.toFixed(2) %></h2>
+                    <h4>Total Revenue</h4>
+                </div>
+                <div class="total">
+                    <h2><%= totals.views %></h2>
+                    <h4>Total Views</h4>
+                </div>
+                <div class="total">
+                    <h2><%= totals.collaborators %></h2>
+                    <h4>Collaborators</h4>
+                </div>
+            </div>
+            <div class="table-container">
+                <h4>Collaborators</h4>
+                <table id="summaryTable">
+                    <thead>
+                        <th>
+                            USERNAME
+                        </th>
+                        <th>
+                            VIEWS
+                        </th>
+                        <th>
+                            REVENUE
+                        </th>
+                        <th>
+                            SHARE TIME
+                        </th>
+                        <th>
+                            START DATE
+                        </th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="table-container">
+                <h4>Monthly Reports per Collaborator</h4>
+                <table id="reportTable">
+                    <thead>
+                        <th>
+                            USERNAME
+                        </th>
+                        <th>
+                            VIEWS
+                        </th>
+                        <th>
+                            REVENUE
+                        </th>
+                        <th>
+                            DATE
+                        </th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="container-right-flex">
+                    <ul class="pagination" target='#reportTable'></ul>
+                </div>
+            </div>
+            <div id="payment">
+                <h2>Payment</h2>
+                <p>
+                    All revenue made is evenly divided between all collaborators. Payment will be made to your chosen pay-out account.
+                </p>
+            </div>
+        </section>
+    </body>
 </html>
